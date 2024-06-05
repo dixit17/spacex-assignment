@@ -1,0 +1,158 @@
+
+#root {
+  width:100%;
+  height:100vh;
+}
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.launch-success-text{
+  color:#198754
+}
+
+.launch-failure-text{
+  color:#dc3545
+}
+
+.launch-upcoming-text{
+  color:#0d6efd
+}
+
+.launch-list-item {
+  width: 300px !important;
+  min-height: 200px !important;
+  background-color:#ffffff !important;
+}
+.launch-list-item:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  z-index: 1400 !important;
+}
+
+.launch-list-item-success {
+  border:2px solid #198754;
+}
+.launch-list-item-upcoming {
+  border:2px solid #0d6efd;
+}
+.launch-list-item-failure {
+  border:2px solid #dc3545;
+}
+
+.launch-card{
+  width: 100% !important;
+  height: 100% !important;
+  background-color: transparent !important;
+  box-shadow:none !important;
+}
+
+.launch-image-container{
+    width: 175px; 
+    height: 175px; 
+    overflow: hidden;
+}
+
+.launch-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.launch-details{
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+
+.launch-card-action {
+  height: 40px !important;
+}
+
+.launch-success {
+  background-color: #198754 !important;
+ 
+}
+
+.launch-upcoming {
+  background-color: #0d6efd !important;
+}
+
+.launch-failure {
+  background-color: #dc3545 !important;
+}
+
+.launch-divider {
+  height: 5px !important;
+}
+
+.launch-filter-button{
+  width:180px;
+  background-color: #979797;
+  height:35px !important;
+}
+
+.launch-filter-button .MuiInputBase-root{
+  width:180px;
+  background-color: #979797;
+  height:35px !important;
+}
+
+.launch-filter-input .MuiInputBase-input{
+  color:#ffffff !important
+}
+
+.launch-search-input{
+  width:calc(100% - 150px) !important;
+  background-color: #979797;
+  color:#ffffff !important;
+}
+
+.launch-appbar{
+  height:50px !important;
+  position: sticky;
+  top:0px;
+  z-index: 1500 !important;
+  background-color: #4c4c4c !important;
+}
+
+.launch-toolbar{
+  min-height:40px !important;
+}
