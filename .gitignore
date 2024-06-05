@@ -3,3 +3,5 @@ spacex-service/node_modules
 spacex-ui/node_modules
 spacex-service/.history
 spacex-ui/.history
+spacex-ui/package-lock.json
+spacex-service/package-lock.json
