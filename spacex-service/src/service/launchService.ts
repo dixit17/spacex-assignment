@@ -2,6 +2,14 @@ import axios from "axios";
 import { LaunchData } from "../types/launchData";
 import {ApiParams} from "../types/apiParams";
 
+/**
+ * Fetches launches from the SpaceX API based on the given parameters.
+ * 
+ * @param {ApiParams} options - The parameters for the API request, including limit, offset, and query filters.
+ * @returns {Promise<LaunchData[]>} - A promise that resolves to an array of launch data.
+ * @throws Will throw an error if the request fails.
+ */
+
 export const getLaunches = async (options: ApiParams): Promise<LaunchData[]> => {
   const { limit = 50, offset = 0, query } = options;
   let launchQuery: any = {};
@@ -52,6 +60,12 @@ export const getLaunches = async (options: ApiParams): Promise<LaunchData[]> => 
     
 };
 
+/**
+ * Creates a search string for a fuzzy search.
+ * 
+ * @param {LaunchData} launch - The launch data.
+ * @returns {string} - The search string created from the launch data.
+ */
 const createSearchString = (launch: LaunchData) => {
   const keywords = [];
   if (launch.success) keywords.push("success");

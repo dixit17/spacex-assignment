@@ -1,18 +1,32 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Typography } from "@mui/material";
 import { SearchFilter } from "../../types/search";
 import LaunchPage from "./LaunchPage";
 import useFetchLaunchData from "../../hooks/useFetchLaunchData";
 import { QueryOptions } from "../../types/apiParams";
-
+import Snackbar from "@mui/material/Snackbar";
+import { Alert, Button } from "@mui/material";
+/**
+ * LaunchContainer component - handles fetching and displaying SpaceX launch data.
+ *
+ * @component
+ * @example
+ * return (
+ *   <LaunchContainer />
+ * )
+ */
 const LaunchContainer: React.FC = () => {
   const [query, setQuery] = useState<QueryOptions>({});
   const initialLoad = useRef(true);
+  /**
+   * Custom hook to fetch data.
+   */
+
   const {
     launchesData,
     loading,
     hasMoreData,
     combinedLaunchData,
+    error,
     fetchMoreData,
     resetData,
     setLoading,
@@ -22,6 +36,9 @@ const LaunchContainer: React.FC = () => {
     query,
   });
 
+  /**
+   * Filter options for the launch data filtering.
+   */
   const filterOptions: SearchFilter[] = [
     { name: "Success", value: "Success" },
     { name: "Failure", value: "Failure" },
@@ -29,18 +46,24 @@ const LaunchContainer: React.FC = () => {
   ];
 
   useEffect(() => {
-    if (initialLoad.current) {
+    if (initialLoad.current && !error) {
       resetData();
     }
+   
   }, [resetData]);
 
   useEffect(() => {
     if (!initialLoad.current) {
-      console.log("intial loading");
       resetData();
     }
     initialLoad.current = false;
   }, [query]);
+
+  /**
+   * Applies the selected filter to the query state.
+   * Creates a new object by removing previous keys from the query
+   * @param {SearchFilter} filter - The filter to apply.
+   */
 
   const applyFilter = (filter: SearchFilter) => {
     let tempQuery = Object.keys(query).reduce((acc, curr) => {
@@ -60,23 +83,41 @@ const LaunchContainer: React.FC = () => {
     }
   };
 
+  /**
+   * Handles loading more data when requested.
+   */
   const onLoadMore = () => {
     fetchMoreData();
   };
 
   return (
-    <div data-testid="launch-container" className="h-100 w-100 d-flex flex-column align-items-center">
-      <LaunchPage
-        data={launchesData}
-        combinedData={combinedLaunchData}
-        filterOptions={filterOptions}
-        applyFilter={applyFilter}
-        loading={loading}
-        onLoadMore={onLoadMore}
-        hasMoreData={hasMoreData}
-        setLoading={setLoading}
-      />
-    </div>
+    <>
+      <div
+        data-testid="launch-container"
+        className="h-100 w-100 d-flex flex-column align-items-center"
+      >
+        <LaunchPage
+          data={launchesData}
+          combinedData={combinedLaunchData}
+          filterOptions={filterOptions}
+          applyFilter={applyFilter}
+          loading={loading}
+          onLoadMore={onLoadMore}
+          hasMoreData={hasMoreData}
+          setLoading={setLoading}
+        />
+      </div>
+      <Snackbar open={!!error} autoHideDuration={6000}>
+        <Alert severity="error" className="w-100" 
+        action={
+            <Button color="inherit" size="small" onClick={(e) => resetData()}>
+              Retry
+            </Button>
+          }>
+          {error}
+        </Alert>
+      </Snackbar>
+    </>
   );
 };
 

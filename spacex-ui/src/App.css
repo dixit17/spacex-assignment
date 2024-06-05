@@ -56,7 +56,7 @@
 
 .launch-list-item {
   width: 300px !important;
-  min-height: 200px !important;
+  height: 500px !important;
   background-color:#ffffff !important;
 }
 .launch-list-item:hover{

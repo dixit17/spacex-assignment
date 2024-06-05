@@ -19,11 +19,26 @@ import { SearchFilter } from "../../types/search";
 import { useDebouncedCallback } from "use-debounce";
 import CancelIcon from "@mui/icons-material/Cancel";
 
+/**
+ * Props for the Search component.
+ * 
+ * @typedef {Object} SearchProps
+ * @property {SearchFilter[]} filterOptions - Options for filtering the search results.
+ * @property {(filterValue: SearchFilter) => void} onFilterSelect - Function to apply a selected filter.
+ * @property {(search: string) => void} onInputSearch - Function to handle search input.
+ */
 interface SearchProps {
   filterOptions: SearchFilter[];
   onFilterSelect: (filterValue: SearchFilter) => void;
   onInputSearch: (search: string) => void;
 }
+
+/**
+ * Search component - provides a search bar and filter options for the launch data.
+ * 
+ * @param {SearchProps} props - The props for the component.
+ * @returns {JSX.Element} - The Search component.
+ */
 
 const Search: React.FC<SearchProps> = ({
   filterOptions,

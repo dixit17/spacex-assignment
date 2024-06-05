@@ -1,11 +1,30 @@
 import { useRef, useEffect } from "react";
 
+/**
+ * Props for the useInfiniteScrolling hook.
+ * 
+ * @typedef {Object} useInfiniteScrollingProps
+ * @property {boolean} loading - Indicates if data is currently being loaded.
+ * @property {boolean} hasMoreData - Indicates if there is more data to load.
+ * @property {() => void} onLoadMore - Function to load more data.
+ */
 interface useInfiniteScrollingProps {
   loading: boolean;
   hasMoreData: boolean;
   onLoadMore: () => void;
 }
 
+/**
+ * Custom hook for implementing infinite scrolling.
+ * 
+ * @param {useInfiniteScrollingProps} props - The props for the hook.
+ * @returns {React.MutableRefObject<HTMLDivElement | null>} - A ref to be attached to the element for observing.
+ * 
+ * @example
+ * const observerRef = useInfiniteScrolling({ loading, hasMoreData, onLoadMore });
+ * 
+ * return <div ref={observerRef} />;
+ */
 const useInfiniteScrolling = ({
   loading,
   hasMoreData,

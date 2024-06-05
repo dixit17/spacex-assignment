@@ -22,6 +22,19 @@ import Fuse from "fuse.js";
 import useDebounce from "../../hooks/useDebounce";
 import useInfiniteScrolling from "../../hooks/useInfiniteScrolling";
 
+/**
+ * Props for the LaunchPage component.
+ * 
+ * @typedef {Object} LaunchPageProps
+ * @property {LaunchData[]} data - The current data of launch.
+ * @property {LaunchData[]} combinedData - All fetched launch data combined.
+ * @property {SearchFilter[]} filterOptions - Options for filtering the launch data.
+ * @property {(filterValue: SearchFilter) => void} applyFilter - Function to apply a selected filter.
+ * @property {boolean} loading - Indicates if data is being loaded.
+ * @property {() => void} onLoadMore - Function to load more data.
+ * @property {boolean} hasMoreData - Indicates if there is more data to load.
+ * @property {(loading: boolean) => void} setLoading - Function to set the loading state.
+ */
 interface LaunchPageProps {
   data: LaunchData[];
   combinedData: LaunchData[];
@@ -33,6 +46,12 @@ interface LaunchPageProps {
   hasMoreData: boolean;
 }
 
+/**
+ * Determines the class for a list item border based on launch status.
+ * 
+ * @param {LaunchData} launch - The launch data.
+ * @returns {string} - The status class.
+ */
 const getStatusClass = (launch: LaunchData) => {
   if (launch.success) {
     return "success";
@@ -42,6 +61,13 @@ const getStatusClass = (launch: LaunchData) => {
     return "upcoming";
   }
 };
+
+/**
+ * LaunchPage component - displays a list of SpaceX launches with search and filter options.
+ * @Component
+ * @param {LaunchPageProps} props - The props for the component.
+ * @returns {JSX.Element} - The LaunchPage component.
+ */
 
 const LaunchPage: React.FC<LaunchPageProps> = ({
   data,
@@ -58,6 +84,7 @@ const LaunchPage: React.FC<LaunchPageProps> = ({
   const fuse = new Fuse(combinedData, {
     keys: ["searchText", "name", "details", "rocket"],
     includeScore: true,
+    minMatchCharLength: 5,
   });
   const debouncedLoading = useDebounce(loading, 200);
   const observerRef = useInfiniteScrolling({
@@ -91,7 +118,7 @@ const LaunchPage: React.FC<LaunchPageProps> = ({
     if (search) {
       const searchResult = fuse
         .search(search)
-        .filter((result) => result.score && result.score >= 0.6)
+        .filter((result) => result.score && result.score <= 0.5)
         .map((result) => result.item);
       setFilteredLaunches(
         searchResult.length > 0 ? searchResult : combinedData
@@ -150,6 +177,13 @@ const LaunchPage: React.FC<LaunchPageProps> = ({
     }
   };
 
+    /**
+   * Trims the launch details if they exceed the maximum allowed characters.
+   * 
+   * @param {string} details - The launch details.
+   * @returns {string} - The trimmed details.
+   */
+  
   const maxCharsAllowed = (details: string) => {
     const maxChars = 350;
     if (details.length < maxChars) {
