@@ -1,3 +1,49 @@
+# SpaceX  UI
+## Overview </br>
+The SpaceX UI provides an interface to view and search for SpaceX launches. Users can search for specific launches using a search bar with fuzzy search capabilities, and refine the results using filters based on launch success, failure, and upcoming status.
+
+## Features
+- Search: Search launches using a search bar with fuzzy search capabilities. </br>
+- Filters: Apply filters to refine the results based on launch status (success, failure, upcoming). </br>
+- Infinite Scrolling: Load more data as the user scrolls down. </br>
+- Retry Mechanism: In case of a data fetch error, users can retry loading the data. </br>
+
+## Technologies Used
+- React: JavaScript library for building user interfaces. </br>
+- Material-UI: React component library for implementing Google's Material Design. </br>
+- Axios: Promise-based HTTP client for making requests to the backend API. </br>
+- Fuse.js: Lightweight fuzzy-search library for search functionality. </br>
+
+## Getting Started
+### Prerequisites
+Make sure you have the following installed on your system: </br>
+
+Node.js: v12 or later  </br>
+npm: v6 or later  </br>
+
+### Installation
+Clone the repository: </br>
+git clone https://github.com/your-username/spacex-launches-ui.git </br>
+
+cd spacex-ui </br>
+Install the dependencies: </br>
+
+npm install </br>
+incase on conflict try  npm install --save --legacy-peer-deps </br>
+
+## Set up environment variables:
+Create a .env file in the root directory and add the following:
+
+REACT_APP_API_URL=http://localhost:3005/api
+Make sure the REACT_APP_API_URL points to the backend API URL.
+
+## Running the Application
+To start the application, run:
+
+npm start
+This will start the development server and open the application in your default web browser at http://localhost:3000.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -29,18 +75,3 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
