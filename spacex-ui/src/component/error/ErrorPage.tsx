@@ -7,8 +7,8 @@ interface ErrorPageProps {
 
 const ErrorPage: React.FC<ErrorPageProps> = ({ errorMessage }) => {
   return (
-    <Container className = "d-flex w-100 h-100" style={{ textAlign:"center" , backgroundColor:"#000000"}}>
-      <div className='m-auto rounded-3 p-1 w-50' style={{boxShadow: "0 0 50px 15px #48abe0"}}>
+    <div className = "d-flex w-100 h-100" style={{ textAlign:"center" , backgroundColor:"#000000"}}>
+      <div className='m-auto rounded-3 p-1 w-50' style={{boxShadow: "0 0 50px 20px #48abe0"}}>
       <Typography variant="h4" style={{color:"#ffffff"}} gutterBottom>
         Something went wrong
       </Typography>
@@ -16,7 +16,7 @@ const ErrorPage: React.FC<ErrorPageProps> = ({ errorMessage }) => {
         {errorMessage}
       </Typography>
       </div>
-    </Container>
+    </div>
   );
 };
 
