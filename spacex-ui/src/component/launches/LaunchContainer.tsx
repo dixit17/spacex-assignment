@@ -5,6 +5,7 @@ import useFetchLaunchData from "../../hooks/useFetchLaunchData";
 import { QueryOptions } from "../../types/apiParams";
 import Snackbar from "@mui/material/Snackbar";
 import { Alert, Button } from "@mui/material";
+import ErrorPage from "../error/ErrorPage";
 /**
  * LaunchContainer component - handles fetching and displaying SpaceX launch data.
  *
@@ -49,11 +50,10 @@ const LaunchContainer: React.FC = () => {
     if (initialLoad.current && !error) {
       resetData();
     }
-   
   }, [resetData]);
 
   useEffect(() => {
-    if (!initialLoad.current) {
+    if (!initialLoad.current && !error) {
       resetData();
     }
     initialLoad.current = false;
@@ -87,7 +87,9 @@ const LaunchContainer: React.FC = () => {
    * Handles loading more data when requested.
    */
   const onLoadMore = () => {
+    if (!error) {
     fetchMoreData();
+    }
   };
 
   return (
@@ -96,6 +98,7 @@ const LaunchContainer: React.FC = () => {
         data-testid="launch-container"
         className="h-100 w-100 d-flex flex-column align-items-center"
       >
+        {!error ? 
         <LaunchPage
           data={launchesData}
           combinedData={combinedLaunchData}
@@ -106,6 +109,7 @@ const LaunchContainer: React.FC = () => {
           hasMoreData={hasMoreData}
           setLoading={setLoading}
         />
+        :<ErrorPage errorMessage={error}/>}
       </div>
       <Snackbar open={!!error} autoHideDuration={6000}>
         <Alert severity="error" className="w-100" 

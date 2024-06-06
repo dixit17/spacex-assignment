@@ -73,6 +73,7 @@ const useFetchLaunchData = ({
           offset: currentOffset.current,
           query,
         });
+        setError("");
         setLaunchesData((prev) => (reset ? data : [...prev, ...data]));
         setCombinedLaunchData((prev) => (reset ? data : [...prev, ...data]));
         currentOffset.current += limit;
@@ -93,7 +94,6 @@ const useFetchLaunchData = ({
   };
 
   const resetData = () => {
-    setError("");
     fetchData(true);
    
   };
