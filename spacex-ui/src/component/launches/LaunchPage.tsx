@@ -185,7 +185,7 @@ const LaunchPage: React.FC<LaunchPageProps> = ({
    */
   
   const maxCharsAllowed = (details: string) => {
-    const maxChars = 350;
+    const maxChars = 300;
     if (details.length < maxChars) {
       return details;
     } else {
@@ -230,8 +230,8 @@ const LaunchPage: React.FC<LaunchPageProps> = ({
               </div>
               <CardContent className="w-100 p-1 launch-card-content">
                 <div className="d-flex align-items-center w-100 justify-content-between">
-                  <div className="w-50">
-                    <Typography variant="h6">{launch.name}</Typography>
+                  <div className="w-75">
+                    <Typography variant="subtitle2" className="fw-bold">{launch.name}</Typography>
                     <Typography variant="subtitle2">
                       {getDate(launch.date)}
                     </Typography>
